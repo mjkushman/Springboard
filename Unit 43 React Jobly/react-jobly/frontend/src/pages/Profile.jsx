@@ -1,46 +1,59 @@
 import { useParams } from "react-router-dom";
 import UserContext from "../UserContext";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import JoblyApi from "../../api";
-import { useEffect } from "react";
+
 import ProfileUpdateForm from "../ProfileUpdateForm";
 
 const Profile = () => {
   const { username } = useParams();
-  const { currentUser, setCurrentUser,token } = useContext(UserContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+  console.log("currentUser from context:", currentUser);
 
-  // user can update their firstname, lastname, and email. Password is required to make changes
+  // user can update their firstname, lastname, and email.
 
+  const [formIsSubmitted, setFormIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [initialFormData, setInitialFormData] = useState({ ...currentUser });
 
+  // async fuction to set initial form data based on user
+  useEffect(() => {
+    console.log("setting initialform data", currentUser);
+    setInitialFormData(() => currentUser);
+    // setFormIsSubmitted(false);
+    setIsLoading(false);
+  }, [currentUser]);
 
-    // async fuction to get information from this user
-    useEffect( () => {
-        async function getUser() {
-            try {
+  const updateProfile = async (formData) => {
+    try {
+      let res = await JoblyApi.updateProfile(username, formData);
+      // console.log("profile update res", res);
+      setIsLoading(true);
+      setCurrentUser((user) => (user = res));
 
-                let res = await JoblyApi.getProfile(username);
-                console.log("its res", res);
-    
-            } catch (error) {
-                console.log(error);
-            }}
-        getUser()
-
-    },[username])
-
-  const INITIAL_FORM_DATA = {
-    username: currentUser.username,
-    firstName: currentUser.firstName,
-    lastName: currentUser.lastName,
-    email: currentUser.email,
+    } catch (error) {
+      console.log("error updating profile:", error);
+    }
   };
 
-  
+  const userJobs = currentUser.jobs;
+  // console.log('user jobs',currentUser)
 
   return (
     <>
-      <h1>Hello {currentUser.firstName}</h1>
-        <ProfileUpdateForm INITIAL_FORM_DATA={INITIAL_FORM_DATA}/>
+      {true && (
+        <div>
+          <h1>Hello {currentUser.firstName}</h1>
+          <div className="m-4 p-2">
+          </div>
+          {!isLoading && currentUser && (
+            <ProfileUpdateForm
+              INITIAL_FORM_DATA={initialFormData}
+              updateProfile={updateProfile}
+            />
+          )}
+        </div>
+      )}
     </>
   );
 };

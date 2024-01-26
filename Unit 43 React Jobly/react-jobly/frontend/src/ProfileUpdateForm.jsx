@@ -4,19 +4,11 @@ import { useContext, useState } from "react";
 import JoblyApi from "../api";
 import { useEffect } from "react";
 
-const ProfileUpdateForm = ({INITIAL_FORM_DATA}) => {
-  const { username } = useParams();
-  const { currentUser, token } = useContext(UserContext);
+const ProfileUpdateForm = ({INITIAL_FORM_DATA, updateProfile}) => {
+  
 
   // user can update their firstname, lastname, and email. Password is required to make changes
 
-
-  // const INITIAL_FORM_DATA = {
-  //   username: currentUser.username,
-  //   firstName: currentUser.firstName,
-  //   lastName: currentUser.lastName,
-  //   email: currentUser.email,
-  // };
 
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
   const handleChange = (e) => {
@@ -24,22 +16,33 @@ const ProfileUpdateForm = ({INITIAL_FORM_DATA}) => {
     setFormData((formData) => ({ ...formData, [name]: value }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('attempting udpate')
+    updateProfile({
+      firstName:formData.firstName,
+      lastName:formData.lastName,
+      email:formData.email
+    })
+    setFormData(INITIAL_FORM_DATA)
+  }
+
+
   return (
     <>
       <h3>Make changes to your profile below</h3>
 
-      <form className="flex flex-col">
+      <form className="flex flex-col" onSubmit={handleSubmit}>
         <input
           disabled
-          className="m-3 p-4 rounded-md"
-          name="username"
-          id="username"
+          className="m-3 p-4 rounded-md text-black"
+          // name="username"
+          // id="username"
           type="text"
-          onChange={handleChange}
-          value={formData.username}
+          placeholder={formData.username}
         />
         <input
-          className="m-3 p-4 rounded-md"
+          className="m-3 p-4 rounded-md text-black"
           name="firstName"
           id="firstName"
           type="text"
@@ -47,7 +50,7 @@ const ProfileUpdateForm = ({INITIAL_FORM_DATA}) => {
           value={formData.firstName}
         />
         <input
-          className="m-3 p-4 rounded-md"
+          className="m-3 p-4 rounded-md text-black"
           name="lastName"
           id="lastName"
           type="text"
@@ -55,11 +58,11 @@ const ProfileUpdateForm = ({INITIAL_FORM_DATA}) => {
           value={formData.lastName}
         />
         <input
-          className="m-3 p-4 rounded-md"
+          className="m-3 p-4 rounded-md text-black"
           name="email"
           id="email"
           type="email"
-          placeholder="email"
+          placeholder=""
           onChange={handleChange}
           value={formData.email}
         />

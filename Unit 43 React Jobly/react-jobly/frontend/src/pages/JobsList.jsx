@@ -1,11 +1,13 @@
 import JobCard from "../JobCard";
 import { useEffect, useState } from "react";
 import JoblyApi from "../../api";
-import {Navigate} from 'react-router-dom'
-import CheckForUser from "../CheckForUser";
+import { useContext } from "react";
+import UserContext from "../UserContext";
+
+
 
 const JobsList = () => {
-  
+  const {currentUser} = useContext(UserContext)
 
   const [jobsList, setJobsList] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -23,7 +25,7 @@ const JobsList = () => {
       }
     }
     getJobs()
-  },[])
+  },[currentUser.applications])
   
   
   return (
@@ -40,6 +42,7 @@ const JobsList = () => {
         {jobsList.map( ({id, title, salary, equity, companyHandle, companyName})  => (
           <JobCard 
             key={id} 
+            id={id}
             title={title} 
             salary={salary} 
             equity={equity} 

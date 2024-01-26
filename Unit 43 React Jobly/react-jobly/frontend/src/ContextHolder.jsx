@@ -30,18 +30,18 @@ const ContextHolder = () => {
 
     // Any time token is updated, store in localstorage and update currentUser
     useEffect(() => {
-        const updateToken = () => {
+        const updateToken = async () => {
             try {
                 // set the token to local storage as string
                 localStorage.setItem(LOCAL_STORAGE_KEY,JSON.stringify(token))
                 JoblyApi.token = token // updates token for API
 
-                if(!token) {
-                    
-                    return}
-                setCurrentUser((currentUser) => jwtDecode(token))
-                let decoded = jwtDecode(token)
-                console.log('decoded',decoded)
+                if(!token) {return}
+                let decodedToken = jwtDecode(token)
+                // If there is a token, use the username to set currentUser
+                setCurrentUser( await JoblyApi.getProfile(decodedToken.username))
+                // console.log(currentUser)
+                // console.log('decoded',decoded)
             } catch (error) {
                 console.log('error in updateToken',error)
             }
@@ -74,19 +74,10 @@ const ContextHolder = () => {
         }
     }
 
-
-    // Any time currentUser is updated, persist the newest data to local storage.
-    // useEffect(() => {        
-    //     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(currentUser))
-    //     console.log('set to local storage:', currentUser)
-    // },[currentUser])
-
-
-
-
+// clear the token from local storage and set token back to null,
     const logoutUser =() => {
-        // setCurrentUser('')
         localStorage.removeItem(LOCAL_STORAGE_KEY)
+        setToken(null)
     }
 
   const context = {

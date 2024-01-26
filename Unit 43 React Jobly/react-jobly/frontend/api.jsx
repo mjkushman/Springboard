@@ -81,12 +81,17 @@ class JoblyApi {
   static async getProfile(username) {
     let res = await this.request(`users/${username}`);
     // setAuthorizationToken(res.token)
-    return res;
+    return res.user;
   }
   // update a user's profile
   static async updateProfile(username,formData) {
-    let res = await this.request(`users/${username}`,formData,'post');
-    return res.token;
+    let res = await this.request(`users/${username}`,formData,'patch');
+    return res.user;
+  }
+  // Apply to a job
+  static async applyToJob(username,jobId) {
+    let res = await this.request(`users/${username}/jobs/${jobId}`,{},'post');
+    return res;
   }
 
 }
