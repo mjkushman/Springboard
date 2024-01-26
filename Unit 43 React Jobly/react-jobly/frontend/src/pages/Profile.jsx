@@ -30,7 +30,7 @@ const Profile = () => {
       let res = await JoblyApi.updateProfile(username, formData);
       // console.log("profile update res", res);
       setIsLoading(true);
-      setCurrentUser((user) => (user = res));
+      setCurrentUser(() => (res));
 
     } catch (error) {
       console.log("error updating profile:", error);
@@ -46,7 +46,7 @@ const Profile = () => {
         <div>
           <h1>Hello {currentUser.firstName}</h1>
           <div className="m-4 p-2">
-            <h3>Here are the jobs you've applied to:</h3>
+            <h3>Here are the jobs you have applied to:</h3>
             <ul>
               {currentUser.jobs && (currentUser.jobs.map((job) => (<li key={job.id}>{job.title}</li>)))}
             </ul>

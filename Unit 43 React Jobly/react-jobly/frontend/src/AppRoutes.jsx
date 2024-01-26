@@ -15,7 +15,7 @@ const AppRoutes = () => {
   const { currentUser, token } = useContext(UserContext);
 
   return (
-    <Routes>
+    <Routes >
       {/* Home routes.  */}
       <Route path="/" element={<Home />} />
 

@@ -39,7 +39,7 @@ const JobsList = () => {
       {!isLoading && !error && (
       
       <div>
-        {jobsList.map( ({id, title, salary, equity, companyHandle, companyName})  => (
+        {jobsList.map( ({id, title, salary, equity, companyName})  => (
           <JobCard 
             key={id} 
             id={id}

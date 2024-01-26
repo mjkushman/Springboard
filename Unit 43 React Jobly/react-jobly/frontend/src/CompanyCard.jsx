@@ -1,6 +1,12 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 const CompanyCard = ({ handle, name, description, numEmployees, logoUrl }) => {
+  const navigate = useNavigate()
+  const handleClick =() => {
+    navigate(`/companies/${handle}`)
+  }
+
   return (
     <>
       <div className="bg-gray-500 m-5 p-2 rounded-lg shadow-md max-w-3xl">
@@ -10,9 +16,9 @@ const CompanyCard = ({ handle, name, description, numEmployees, logoUrl }) => {
         <div className="text-left p-2">
           <p>{description}</p>
         </div>
-        <Link to={`/companies/${handle}`}>
-          <button>See Jobs</button>
-        </Link>
+        {/* <Link to={`/companies/${handle}`}> */}
+          <button onClick={handleClick}>See Jobs</button>
+        {/* </Link> */}
       </div>
     </>
   );

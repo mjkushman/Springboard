@@ -4,11 +4,17 @@ import {useNavigate} from 'react-router-dom'
 
 const Login = () => {
   const navigate = useNavigate()
-   // Prefilled form fields for dev convenience.
+   
+  
+  // Prefilled form fields for dev convenience.
   const INITIAL_FORM_DATA = {
-    username: "mikekush",
-    password: "123456",
+    // username: "mikekush",
+    // password: "123456",
+    username: "",
+    password: "",
   };
+
+
   const { loginFormSubmit } = useContext(UserContext);
 
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
