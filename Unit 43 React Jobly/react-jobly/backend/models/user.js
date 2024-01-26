@@ -144,7 +144,19 @@ class User {
            FROM applications AS a
            WHERE a.username = $1`, [username]);
 
-    user.applications = userApplicationsRes.rows.map(a => a.job_id);
+      // console.log(userApplicationsRes.rows.map(j => j.job_id))
+
+
+      user.applications = userApplicationsRes.rows.map(a => a.job_id);
+    // console.log('userapps', user.applications.map(app => Number(app)))
+
+      const userJobsRes = await db.query (
+        `SELECT j.id, j.title, j.company_handle
+        FROM jobs AS j
+        WHERE j.id
+        IN (${user.applications})`)
+        // [user.applications.map(app => Number(app))]);
+    user.jobs = userJobsRes.rows
     return user;
   }
 
