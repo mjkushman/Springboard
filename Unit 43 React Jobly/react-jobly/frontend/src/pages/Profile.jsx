@@ -2,11 +2,12 @@ import { useParams } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import { useContext, useState, useEffect } from "react";
 import JoblyApi from "../../api";
+import JobCard from "../components/JobCard";
+import { Grid } from "@mui/material";
 
 import ProfileUpdateForm from "../components/ProfileUpdateForm";
 
-
-// User's profile page. 
+// User's profile page.
 const Profile = () => {
   const { username } = useParams();
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -30,33 +31,37 @@ const Profile = () => {
       let res = await JoblyApi.updateProfile(username, formData);
       // console.log("profile update res", res);
       setIsLoading(true);
-      setCurrentUser(() => (res));
-
+      setCurrentUser(() => res);
     } catch (error) {
       console.log("error updating profile:", error);
     }
   };
-
+  // title, salary, equity, id, companyName
   // const userJobs = currentUser.jobs;
-  console.log('user jobs',currentUser)
+  console.log("user jobs", currentUser);
 
   return (
     <>
-      {!isLoading && (
+      {!isLoading && currentUser && (
         <div>
           <h1>Hello {currentUser.firstName}</h1>
-          <div className="m-4 p-2">
-            <h3>Here are the jobs you have applied to:</h3>
-            <ul>
-              {currentUser.jobs && (currentUser.jobs.map((job) => (<li key={job.id}>{job.title}</li>)))}
-            </ul>
-          </div>
-          {!isLoading && currentUser && (
+          
             <ProfileUpdateForm
               INITIAL_FORM_DATA={initialFormData}
               updateProfile={updateProfile}
             />
-          )}
+            <h3>Here are the jobs you have applied to:</h3>
+          <Grid container spacing={4}>
+
+            {/* {currentUser.jobs && (currentUser.jobs.map((job) => (<li key={job.id}>{job.title}</li>)))} */}
+            {currentUser.jobs &&
+              currentUser.jobs.map((job) => (
+                <Grid item key={job.id}>
+                  <JobCard id={job.id} title={job.title}></JobCard>
+                </Grid>
+              ))}
+          </Grid>
+
         </div>
       )}
     </>

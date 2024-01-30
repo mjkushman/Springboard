@@ -16,8 +16,8 @@ const CompanyCard = ({ handle, name, description, numEmployees }) => {
   };
 
   return (
-    <Box sx={{height:'400px',width:'300px'}}>
-      <Card>
+    <Box margin='auto' sx={{width:'300px'}}>
+      <Card sx={{maxHeight:'500', width:'300px'}}>
         <CardContent>
           <CardMedia
             component="img"

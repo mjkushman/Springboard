@@ -1,17 +1,15 @@
-import { createContext, useState, useEffect } from "react";
+import {useState, useEffect } from "react";
 import AppRoutes from "../AppRoutes";
 import Navbar from "./Navbar";
 import UserContext from "../context/UserContext";
 import JoblyApi from "../../api";
 import { jwtDecode } from "jwt-decode";
-import { useNavigate } from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
 import theme from "../context/theme";
+import { BrowserRouter } from "react-router-dom";
 
 const ContextHolder = () => {
-  const navigate = useNavigate();
   const LOCAL_STORAGE_KEY = "token";
-
 
   // Create and store current user state.
   // By default, will retrieve user from local storage. If user is null, then return an empty object.  Otherwise, parse the object and return it as currentUser.
@@ -21,7 +19,7 @@ const ContextHolder = () => {
     try {
       const value = localStorage.getItem(LOCAL_STORAGE_KEY);
       if (value == null) return null;
-    //   console.log("retrieved from localStorage:", value);
+      //   console.log("retrieved from localStorage:", value);
       return JSON.parse(value);
     } catch (error) {
       console.log("error retrieving token:", error);
@@ -72,32 +70,27 @@ const ContextHolder = () => {
     }
   }
 
-  // clear the token from local storage and set token back to null,
-  const logoutUser = () => {
-    localStorage.removeItem(LOCAL_STORAGE_KEY);
-    setToken(null);
-  };
-
-
+ 
   const context = {
     signupFormSubmit,
     currentUser,
     setCurrentUser,
     loginFormSubmit,
-    logoutUser,
     token,
+    setToken,
+    LOCAL_STORAGE_KEY,
   };
 
   return (
-
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <UserContext.Provider value={context}>
-        <Navbar currentUser={currentUser} logoutUser={logoutUser}/>
-        {/* Routes for the app */}
-        <AppRoutes />
+        <BrowserRouter>
+          <Navbar />
+          {/* Routes for the app */}
+          <AppRoutes />
+        </BrowserRouter>
       </UserContext.Provider>
-      </ThemeProvider>
-
+    </ThemeProvider>
   );
 };
 

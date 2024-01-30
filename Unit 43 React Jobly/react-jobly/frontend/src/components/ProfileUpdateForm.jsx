@@ -1,14 +1,9 @@
-import { useParams } from "react-router-dom";
-import UserContext from "../context/UserContext";
-import { useContext, useState } from "react";
-import JoblyApi from "../../api";
-import { useEffect } from "react";
+import { useState } from "react";
 
-const ProfileUpdateForm = ({INITIAL_FORM_DATA, updateProfile}) => {
-  
+import { TextField, Stack, Button, Container } from "@mui/material";
 
+const ProfileUpdateForm = ({ INITIAL_FORM_DATA, updateProfile }) => {
   // user can update their firstname, lastname, and email. Password is required to make changes
-
 
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
   const handleChange = (e) => {
@@ -17,23 +12,28 @@ const ProfileUpdateForm = ({INITIAL_FORM_DATA, updateProfile}) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('attempting udpate')
+    e.preventDefault();
+    console.log("attempting udpate");
     updateProfile({
-      firstName:formData.firstName,
-      lastName:formData.lastName,
-      email:formData.email
-    })
-    setFormData(INITIAL_FORM_DATA)
-  }
-
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+    });
+    setFormData(INITIAL_FORM_DATA);
+  };
 
   return (
     <>
       <h3>Make changes to your profile below</h3>
-
-      <form className="flex flex-col" onSubmit={handleSubmit}>
-        <input
+<Container component='div' align='center'>
+      <Stack
+        my={10}
+        spacing={4}
+        component="form"
+        onSubmit={handleSubmit}
+        width={400}
+      >
+        <TextField
           disabled
           className="m-3 p-4 rounded-md text-black"
           // name="username"
@@ -41,7 +41,7 @@ const ProfileUpdateForm = ({INITIAL_FORM_DATA, updateProfile}) => {
           type="text"
           placeholder={formData.username}
         />
-        <input
+        <TextField
           className="m-3 p-4 rounded-md text-black"
           name="firstName"
           id="firstName"
@@ -49,7 +49,7 @@ const ProfileUpdateForm = ({INITIAL_FORM_DATA, updateProfile}) => {
           onChange={handleChange}
           value={formData.firstName}
         />
-        <input
+        <TextField
           className="m-3 p-4 rounded-md text-black"
           name="lastName"
           id="lastName"
@@ -57,7 +57,7 @@ const ProfileUpdateForm = ({INITIAL_FORM_DATA, updateProfile}) => {
           onChange={handleChange}
           value={formData.lastName}
         />
-        <input
+        <TextField
           className="m-3 p-4 rounded-md text-black"
           name="email"
           id="email"
@@ -66,8 +66,11 @@ const ProfileUpdateForm = ({INITIAL_FORM_DATA, updateProfile}) => {
           onChange={handleChange}
           value={formData.email}
         />
-        <button className="m-3 p-2">Update</button>
-      </form>
+        <Button variant="contained" type="submit">
+          Update
+        </Button>
+      </Stack>
+      </Container>
     </>
   );
 };

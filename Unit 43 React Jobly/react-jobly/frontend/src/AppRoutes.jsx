@@ -11,15 +11,17 @@ import { useContext } from "react";
 import UserContext from "./context/UserContext";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
+
 const AppRoutes = () => {
   const { currentUser, token } = useContext(UserContext);
 
   return (
-    <Routes >
+    <Routes>
       {/* Home routes.  */}
       <Route path="/" element={<Home />} />
 
-      {/* Auth routes.  */}
+      {/* Logged Out Routes.  */}
+
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/logout" element={<Logout />} />

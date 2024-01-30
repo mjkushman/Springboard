@@ -1,26 +1,23 @@
-import {useState} from 'react'
 import { Link, useNavigate } from "react-router-dom";
 
 import {AppBar, Toolbar, Typography, Stack, Button} from '@mui/material';
+import { useContext } from 'react';
+import UserContext from '../context/UserContext';
 
 
-const Navbar = ({ currentUser, logoutUser }) => {
+const Navbar = () => {
   
-  const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
+  const {setToken, currentUser, LOCAL_STORAGE_KEY} = useContext(UserContext)
 
   const navigate = useNavigate()
 
-  const pages = [
-    {label:'Companies', href:'/companies'},
-    {label:'Jobs', href:'/jobs'}
-  ];
-  const settings = ['Profile','Logout'];
+  // Log out the user. Removes their token and data from local storage
+  const handleLogout = () => {
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    setToken(null);
+  };
 
 
-const handleLogout = () => {
-  logoutUser()
-}
 
 
   return (
