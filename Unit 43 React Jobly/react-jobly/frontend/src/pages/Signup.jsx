@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import UserContext from "../UserContext";
+import UserContext from "../context/UserContext";
 
 const Signup = () => {
 

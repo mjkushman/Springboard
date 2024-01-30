@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import JoblyApi from "../api";
+import JoblyApi from "../../api";
 import { useState, useEffect } from "react";
 import JobCard from "./JobCard";
 

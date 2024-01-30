@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-import UserContext from "../UserContext";
+import UserContext from "../context/UserContext";
 import { useContext, useState, useEffect } from "react";
 import JoblyApi from "../../api";
 
-import ProfileUpdateForm from "../ProfileUpdateForm";
+import ProfileUpdateForm from "../components/ProfileUpdateForm";
 
 
 // User's profile page. 

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+
 import JoblyApi from "../../api";
-import CompanyCard from "../CompanyCard";
+import CompanyCard from '../components/CompanyCard'
+
+import { Grid, TextField } from "@mui/material";
 
 // Displays a list of companies and their information
 
@@ -46,10 +49,12 @@ const CompaniesList = () => {
     <>
       <div className="m-3 min-w-min">
         <h1 className="text-5xl">Companies</h1>
-        <form className="flex">
-          <label htmlFor="companyName"></label>
-          <input
-            className="w-full m-3 min-h-12 text-black leading-8 p-4 rounded-lg"
+        <form>
+          {/* <label htmlFor="companyName"></label> */}
+          <TextField
+            variant='outlined'
+            size='medium'
+            label='Search'
             type="text"
             id="companyName"
             name="companyName"
@@ -64,10 +69,13 @@ const CompaniesList = () => {
         {isLoading && <div>loading...</div>}
         {/* Return the list if not loading */}
         {!isLoading && (
-          <div>
+          // Companies list goes here
+          <Grid container my={6} spacing={2} justifyContent='center'>
+          
             {companyList.map(
               ({ handle, name, description, numEmployees, logoUrl }) => (
-                <CompanyCard
+                <Grid item key={handle}>
+                  <CompanyCard
                   key={handle}
                   handle={handle}
                   numEmployees={numEmployees}
@@ -75,9 +83,11 @@ const CompaniesList = () => {
                   description={description}
                   logoUrl={logoUrl}
                 />
-              )
-            )}
-          </div>
+                </Grid>
+                )
+                )}
+
+          </Grid>
         )}
       </div>
     </>

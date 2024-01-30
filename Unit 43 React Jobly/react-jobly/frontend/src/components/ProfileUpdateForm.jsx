@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import UserContext from "./UserContext";
+import UserContext from "../context/UserContext";
 import { useContext, useState } from "react";
-import JoblyApi from "../api";
+import JoblyApi from "../../api";
 import { useEffect } from "react";
 
 const ProfileUpdateForm = ({INITIAL_FORM_DATA, updateProfile}) => {

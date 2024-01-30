@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 
-import ContextHolder from "./ContextHolder";
+import ContextHolder from "./components/ContextHolder";
 
 function App() {
   return (
