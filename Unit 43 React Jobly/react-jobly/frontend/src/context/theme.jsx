@@ -37,17 +37,17 @@ const themeOptions = {
         },
       },
     },
-    typography: {
-      h1: {
-        fontFamily: 'Raleway',
-      },
-      h2: {
-        fontFamily: 'Raleway',
-      },
-      h3: {
-        fontFamily: 'Raleway',
-      },
-    },
+    // typography: {
+    //   // h1: {
+    //   //   fontFamily: 'Sans',
+    //   // },
+    //   // h2: {
+    //   //   fontFamily: 'Raleway',
+    //   // },
+    //   // h3: {
+    //   //   fontFamily: 'Raleway',
+    //   // },
+    // },
   };
 
 const theme = createTheme(themeOptions)

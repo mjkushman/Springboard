@@ -59,19 +59,14 @@ const handleLogout = () => {
         </Toolbar>
       </AppBar>
       
+      {/*  THE OLD NAV
 
-  
-      
-      
-      
-      
-      
       <div className="flex row-auto">
         <div className="flex">
           <Link to="/">Home</Link>
         </div>
 
-        {/* If there is a user, show username and logout button */}
+        If there is a user, show username and logout button
         {currentUser.username && (
           <div className="">
             <Link className="m-2 p2" to="/companies">
@@ -101,6 +96,7 @@ const handleLogout = () => {
           </div>
         )}
       </div>
+       */}
     </>
   );
 };

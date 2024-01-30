@@ -24,6 +24,7 @@ const Login = () => {
   };
 
   const handleSubmit = (e) => {
+    console.log('login submitted')
     e.preventDefault();
     loginFormSubmit(formData);
     // take person to companies page after 1 second
@@ -34,17 +35,17 @@ const Login = () => {
 
   return (
     <>
-      <Container>
-      <h1>Log in to continue</h1>
-        <Box p={4}>
+      <Container py={4}>
+        <h1>Log in to continue</h1>
+        <Box p={4} margin="auto" sx={{ maxWidth: 400 }}>
           <form onSubmit={handleSubmit}>
-            <Stack spacing={3}>
+            <Stack component="div" spacing={5}>
               <TextField
                 required
                 type="text"
                 name="username"
                 id="username"
-                placeholder="Pick a username"
+                placeholder="Username"
                 value={formData.username}
                 onChange={handleChange}
               />
@@ -59,7 +60,11 @@ const Login = () => {
                 onChange={handleChange}
               />
 
-              <Button variant="contained">Log In</Button>
+              <Box margin="auto">
+                <Button type='submit' sx={{ width: 170, height: 50 }} variant="contained">
+                  Log In
+                </Button>
+              </Box>
             </Stack>
           </form>
         </Box>
