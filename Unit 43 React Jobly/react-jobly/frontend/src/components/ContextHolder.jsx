@@ -26,17 +26,18 @@ const ContextHolder = () => {
     }
   });
 
+
   // Any time token is updated, store in localstorage and update currentUser
   useEffect(() => {
     const updateToken = async () => {
       try {
         // set the token to local storage as string
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(token));
-        JoblyApi.token = token; // updates token for API
-
+        
         if (!token) {
           return;
         }
+        JoblyApi.token = token; // updates token for API
         let decodedToken = jwtDecode(token);
         // If there is a token, use the username to set currentUser
         setCurrentUser(await JoblyApi.getProfile(decodedToken.username));

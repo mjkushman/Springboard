@@ -47,7 +47,7 @@ const Navbar = () => {
         )}
         {!currentUser.username && (
         <div>
-        <Button color='inherit' onClick={() => (navigate('/signin'))}>Sign In</Button>
+        <Button color='inherit' onClick={() => (navigate('/login'))}>Sign In</Button>
         <Button color='inherit' onClick={() => (navigate('/signup'))}>Sign Up</Button>
         </div>
         )}
