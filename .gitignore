@@ -1,0 +1,4 @@
+venv
+.DS_Store
+*.gdoc
+node_modules
