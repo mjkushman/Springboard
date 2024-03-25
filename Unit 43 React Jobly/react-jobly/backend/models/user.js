@@ -87,7 +87,7 @@ class User {
           firstName,
           lastName,
           email,
-          isAdmin,
+          isAdmin
         ],
     );
 
@@ -109,7 +109,7 @@ class User {
                   email,
                   is_admin AS "isAdmin"
            FROM users
-           ORDER BY username`,
+           ORDER BY username`
     );
 
     return result.rows;
