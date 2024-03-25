@@ -1,0 +1,14 @@
+<!-- inherit base.html, then extend it with the following -->
+{% extends 'base.html'%} 
+{% block title%} Greeter Response V2 {% endblock %}
+{% block content %} 
+    <h1>Hi there {{username}}!</h1>
+    {% if wants_compliments %}
+    <h2>Ok, here are compliments:</h2>
+    <ul>
+        {% for compliment in compliments %}
+        <li>You're {{compliment}}!</li>
+        {%endfor%}
+    </ul>
+    {%endif%}
+{% endblock %}

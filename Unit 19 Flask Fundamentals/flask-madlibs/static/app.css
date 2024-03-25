@@ -1,0 +1,18 @@
+main {
+    background: rgb(244, 238, 239);
+    margin: 15px 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+main h1 {
+    font-size: 2em;
+}
+form{
+    padding: 10px;
+}
+form button{
+    margin: 20px;
+}
+main div{
+    margin: 5px;
+}

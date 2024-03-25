@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{%endblock%}</title>
+    <link rel="stylesheet" href="/static/app.css">
+</head>
+
+<!-- This file has become the parent template -->
+
+<body>
+    <nav class="navbar">
+        <!-- <a href="">I'm a NavBar</a> -->
+        <a href="/">Home</a>
+        <a href="/form">Greet V1</a>
+        <a href="/form-2">Greet V2</a>
+        <a href="/lucky">Get Lucky</a>
+        <a href="/goodbye">Goodbye</a>
+        <!-- <a href="/hello">Hello</a> -->
+        <!-- <a href="/spell">Home</a> -->
+        <!-- <a href="">{% block current_page %}{% endblock%}</a> -->
+    </nav>
+    <main id="content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {%if messages%}
+        <section class="messages">
+            <!-- setting with_categories=true allows categories to come in too -->
+            {% for category,msg in messages %}
+            <p class="{{category}}">{{category}}! {{msg}}</p>
+            {%endfor%}
+        </section>
+        {% endif %}
+        {% endwith %}
+        <!-- main page content follows -->
+        {% block content %} {% endblock %}
+
+        <footer>I'm a footer. Use your imagination</footer>
+    </main>
+
+
+    <!-- <script src="static/app.js"></script> -->
+</body>
+
+</html>

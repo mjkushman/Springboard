@@ -1,0 +1,13 @@
+<!-- inherit base.html, then extend it with the following -->
+{% extends 'base.html'%}
+{% block title%} Lucky {% endblock %}
+<!-- {% block current_page %} Form V2 {% endblock %} -->
+{% block content %}
+    <h1>Your lucky number is {{lucky_num}}</h1>
+    {% if lucky_num == 3 %}
+    <h2>That's my lucky number too!!</h2>
+    {% else %}
+    <h2>I don't like that number</h2>
+    {% endif %}
+
+{%endblock%}

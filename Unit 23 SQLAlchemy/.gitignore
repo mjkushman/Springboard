@@ -1,0 +1,5 @@
+.DS_Store
+node_modules
+*.gdoc
+venv
+__pychache__
