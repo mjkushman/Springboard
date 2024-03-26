@@ -1,0 +1,11 @@
+.CartItem {
+    border-bottom: 0.3px dotted black;
+}
+
+.CartItem-img {
+    width: 140px;
+}
+
+.CartItem-title {
+    margin-left: 10px;
+}
