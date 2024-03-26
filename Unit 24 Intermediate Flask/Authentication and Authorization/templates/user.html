@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Register now{% endblock %}
+{% block main %}
+
+<div class="container">
+<h1 class="display-1">{{user.first_name}}</h1>
+</div>
+<div class="container">
+<p>{{user.first_name}} {{user.last_name}}</p>
+<p>{{user.email}}</p>
+</div>
+<div class="container">
+<a class="btn btn-info" href="{{user.username}}/feedback/add">Add feedback</a>
+</div>
+
+<div class="container feedback">
+{% for f in user.feedback %}
+<p data-feedbackid="{{f.id}}"><h4>{{f.title}}</h4>{{f.content}} 
+{# link to edit feedback form #}
+<a href="/feedback/{{f.id}}/update" class="btn btn-secondary btn-sm">Edit</a> 
+{# one click delete of feedback #}
+<form style="display:inline" action="/feedback/{{f.id}}/delete" method="POST">
+    <button class="btn btn-sm btn-danger">Delete</button></form></p> 
+{% endfor %}
+ </div>
+<div><form action="{{user.username}}/delete" method="POST"><button class="btn btn-link">Delete Account</button></form></div>
+{% endblock %}
