@@ -1,0 +1,41 @@
+{% extends 'base.html'%} {% block title %}Adopt a pet {% endblock %} {% block
+content %}
+<div class="container">
+  {%if pet.photo_url %}
+  <img src="{{pet.photo_url}}" alt="" width="500px" />
+  {%endif%}
+  <h1>{{pet.name}}</h1>
+</div>
+<div class="container">
+  <form action="" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="input-group">
+      {{form.photo_url.label(class='input-group-text')}}{{form.photo_url(class='form-control')}}
+    </div>
+    <div>
+      <small class="form-text"
+        >{% for err in form.photo_url.errors %} {{err}} {% endfor %}
+      </small>
+    </div>
+
+    <div class="input-group">
+      {{form.notes.label(class='input-group-text')}} {{form.notes}}
+    </div>
+    <div>
+      <small class="form-text"
+        >{% for err in form.notes.errors %} {{err}} {% endfor %}
+      </small>
+    </div>
+
+    <div class="input-group">
+      {{form.available.label(class='input-group-text')}} {{form.available}}
+    </div>
+      <div>
+      <small class="form-text"
+        >{% for err in form.available.errors %} {{err}} {% endfor %}
+      </small>
+    </div>
+    <button class="btn btn-primary">Save</button>
+  </form>
+</div>
+{% endblock %}
