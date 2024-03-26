@@ -1,0 +1,73 @@
+/*
+* {
+   box-sizing: border-box; 
+}
+*/
+/*
+:focus {
+  TODO
+}
+ */
+
+ body {
+  background-image: linear-gradient(to right,rgb(228, 168, 0),rgb(173, 75, 0));
+}
+
+input {
+ width:500px;
+ height:34px;
+ border-style: none;
+
+}
+
+.search-container {
+  position:fixed;
+  left:50%;
+  top: 30%;
+  margin-left:-250px;
+  margin-top:-17px;
+}
+.search-container input,
+.search-container .suggestions {
+  background-color:rgba(255, 255, 255, 0.185);
+  font-size: 1.2em;
+}
+ /*
+.search-container input {
+  TODO
+  }
+ */
+ /*
+ .search-container .suggestions {
+   TODO 
+}
+*/
+
+ul {
+  background-color: rgba(255, 255, 255, 0.083);
+  list-style:none;
+  text-align: left;
+  padding: 0px;
+  margin: 0px 0px 0px 0px;
+}
+
+/*
+ul.has-suggestions {
+   TODO 
+  background-color:purple;
+}
+*/
+
+ul li {
+  padding: 5px;
+  font-size:.9em;
+  font-weight: 100;
+}
+
+ul li:hover {
+  background-color:rgb(221, 144, 0);
+}
+
+input {
+   font-weight:300;
+}
